@@ -45,7 +45,7 @@ function drawNestedFlames(ele, data, key, colors) {
             left: 50
         },
         width = (candleWidth * data.length * 1.1) - margin.left - margin.right,
-        height = (width * 0.65) - margin.top - margin.bottom;
+        height = ((width * 0.65) < 500 ? 500 : (width * 0.65)) - margin.top - margin.bottom;
     var innerPadding = data.length;
 
     //Line function for flame curve
