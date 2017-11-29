@@ -1,21 +1,245 @@
 <html>
 <head>
 <title>d3-nested-flame-demo</title>
+<meta charset="utf-8">
+<meta name="description" content="A Nested flame chart Visualization.">
+<link rel="shortcut icon" href="http://www.vinodlouis.com/icon/favicon.ico"/>	
 <script type="text/javascript" src="./bower_components/d3/d3.min.js"></script>
 <script type="text/javascript" src="./scripts/d3-nested-flame.js"></script>
-<style> /* set the CSS */
+<style type="text/css">
+	.tooltip-path{
+		opacity: 0.3;
+		stroke-dasharray:5,5;  
+	}
+	.labels{
+		font-size: 12px;
+	}
+	.no-link{
+		pointer-events: none;
+	}
+	.label-title{
+		text-anchor: middle;
+		font-size: 15px;
+		stroke-width:2;
+	}
 
-.bar { fill: steelblue; }
-
+	.alignleft {
+    	float: left;
+	}
+	
+	.alignright {
+    	float: right;
+	}
 </style>
 </head>
 <body>
-	<h1>DEMO</h1>
 	<div id="chart1"></div>
+	<div id="textbox">
+        <p class="alignleft"><small>Source code available at <a href="https://github.com/VinodLouis/d3-nested-flame-chart" target="blank">Github</a></small></p>
+        <p class="alignright"><small>Created with <span style="color:red">&#9829;</span> by <a href="http://www.vinodlouis.com" target="blank">Vinod Louis.</a></small></p>
+      </div>
 </body>
 <script type="text/javascript">
-	var d = [{"country":"India","shelter":354,"house":200,"food":100},{"country":"India1","shelter":520,"house":200,"food":100},{"country":"India2","shelter":214,"house":200,"food":100},{"country":"India3","shelter":400,"house":200,"food":100},{"country":"India4","shelter":256,"house":200,"food":100}];
+	var d = [{
+    "key": "Country0",
+    "data": [{
+        "prop": "Shelter",
+        "value": 200,
+        "desc": "lorem ipsum dolor",
+        "link": ""
+    }, {
+        "prop": "House",
+        "value": 100,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }, {
+        "prop": "Food",
+        "value": 354,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }]
+}, {
+    "key": "Country1",
+    "data": [{
+        "prop": "Shelter",
+        "value": 200,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }, {
+        "prop": "House",
+        "value": 100,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }, {
+        "prop": "Food",
+        "value": 320,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }]
+}, {
+    "key": "Country2",
+    "data": [{
+        "prop": "Shelter",
+        "value": 200,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }, {
+        "prop": "House",
+        "value": 100,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }, {
+        "prop": "Food",
+        "value": 214,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }]
+}, {
+    "key": "Country3",
+    "data": [{
+        "prop": "Shelter",
+        "value": 200,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }, {
+        "prop": "House",
+        "value": 100,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }, {
+        "prop": "Food",
+        "value": 400,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }]
+}, {
+    "key": "Country4",
+    "data": [{
+        "prop": "Shelter",
+        "value": 200,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }, {
+        "prop": "House",
+        "value": 100,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }, {
+        "prop": "Food",
+        "value": 256,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }]
+}, {
+    "key": "Country5",
+    "data": [{
+        "prop": "Shelter",
+        "value": 200,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }, {
+        "prop": "House",
+        "value": 125,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }, {
+        "prop": "Food",
+        "value": 250,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }]
+}, {
+    "key": "Country6",
+    "data": [{
+        "prop": "Shelter",
+        "value": 380,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }, {
+        "prop": "House",
+        "value": 256,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }, {
+        "prop": "Food",
+        "value": 452,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }]
+}, {
+    "key": "Country7",
+    "data": [{
+        "prop": "Shelter",
+        "value": 300,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }, {
+        "prop": "House",
+        "value": 200,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }, {
+        "prop": "Food",
+        "value": 400,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }]
+}, {
+    "key": "Country8",
+    "data": [{
+        "prop": "Shelter",
+        "value": 300,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }, {
+        "prop": "House",
+        "value": 245,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }, {
+        "prop": "Food",
+        "value": 350,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }]
+}, {
+    "key": "Country9",
+    "data": [{
+        "prop": "Shelter",
+        "value": 250,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }, {
+        "prop": "House",
+        "value": 150,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }, {
+        "prop": "Food",
+        "value": 300,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }]
+}, {
+    "key": "Country10",
+    "data": [{
+        "prop": "Shelter",
+        "value": 300,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }, {
+        "prop": "House",
+        "value": 210,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }, {
+        "prop": "Food",
+        "value": 400,
+        "desc": "lorem ipsum dolor",
+        "link": "https://www.google.co.in"
+    }]
+}];
 
-	drawNestedFlames("chart1",d,"country");
+	drawNestedFlames("chart1",d,"key",["#DE4D3C","#EA7F3B","#EDDF36"]);
 </script>
 </html>
