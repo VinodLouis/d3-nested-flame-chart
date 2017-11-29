@@ -244,11 +244,11 @@ function drawNestedFlames(ele, data, key, colors) {
         arrPoints.push(wholeData.tooltipPoints[2]);
         arrPoints.push({
             x: wholeData.tooltipPoints[2].x,
-            y: wholeData.tooltipPoints[2].y - 70
+            y: wholeData.tooltipPoints[2].y - (((props.length+1)*15)+10)
         });
         arrPoints.push({
             x: wholeData.tooltipPoints[3].x,
-            y: wholeData.tooltipPoints[3].y - 70
+            y: wholeData.tooltipPoints[3].y - (((props.length+1)*15)+10)
         });
         arrPoints.push(wholeData.tooltipPoints[3]);
 
@@ -276,11 +276,11 @@ function drawNestedFlames(ele, data, key, colors) {
         arrPoints.push(wholeData.points[6]);
         arrPoints.push({
             x: wholeData.points[7].x + candleWidth,
-            y: 70
+            y: ((props.length+1)*15)+10
         });
         arrPoints.push({
             x: wholeData.points[7].x - candleWidth,
-            y: 70
+            y: ((props.length+1)*15)+10
         });
         return arrPoints;
     }
